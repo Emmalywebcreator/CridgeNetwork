@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RDG Token - Where Memes Meet Meals</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #2563EB;
+            --secondary-green: #10B981;
+            --highlight-purple: #A855F7;
+            --light-bg: #F9FAFB;
+            --soft-bg: #F3F4F6;
+            --charcoal: #111827;
+            --cool-gray: #6B7280;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--charcoal);
+            background-color: var(--light-bg);
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--highlight-purple) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .floating-emoji {
+            position: absolute;
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .emoji-1 { top: 20%; left: 10%; animation-delay: 0s; }
+        .emoji-2 { top: 30%; right: 15%; animation-delay: 1s; }
+        .emoji-3 { bottom: 20%; left: 20%; animation-delay: 2s; }
+        .emoji-4 { top: 60%; right: 10%; animation-delay: 0.5s; }
+        .emoji-5 { bottom: 30%; right: 25%; animation-delay: 1.5s; }
+        .emoji-6 { top: 40%; left: 5%; animation-delay: 2.5s; }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-green) 100%);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin: 10px;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--white);
+            color: var(--white);
+        }
+
+        .btn-outline:hover {
+            background: var(--white);
+            color: var(--primary-blue);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .hero-stats {
+            margin-top: 3rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-desc {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section:nth-child(even) {
+            background-color: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 3rem;
+        }
+
+        /* Partner Restaurants */
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .partner-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .partner-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--secondary-green);
+            animation: bounce 0.6s ease;
+        }
+
+        .partner-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .partner-card h3 {
+            color: var(--primary-blue);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .partner-card p {
+            color: var(--cool-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Upcoming Collaborations */
+        .upcoming-section {
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .upcoming-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+
+        .upcoming-subtitle {
+            font-size: 1.1rem;
+            color: var(--cool-gray);
+            margin-bottom: 2rem;
+        }
+
+        .upcoming-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .upcoming-card {
+            background: var(--white);
+            border: 2px dashed var(--cool-gray);
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            opacity: 0.7;
+        }
+
+        [data-theme="dark"] .upcoming-card {
+            background: #1E293B;
+            border-color: #475569;
+        }
+
+        .upcoming-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--primary-blue);
+            opacity: 0.9;
+        }
+
+        .upcoming-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .upcoming-card h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--cool-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .upcoming-card p {
+            font-size: 0.9rem;
+            color: var(--cool-gray);
+            opacity: 0.8;
+        }
+
+        /* Tokenomics with Pie Chart */
+        .tokenomics {
+            background: linear-gradient(135deg, var(--soft-bg) 0%, var(--white) 100%);
+        }
+
+        .tokenomics-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .chart-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .pie-chart {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: conic-gradient(
+                #F59E0B 0deg 90deg,
+                #000000 90deg 144deg,
+                #FF69B4 144deg 198deg,
+                #FF6B35 198deg 252deg,
+                #F59E0B 252deg 306deg,
+                #87CEEB 306deg 324deg,
+                #32CD32 324deg 335.52deg,
+                #FFD700 335.52deg 343.68deg,
+                #4169E1 343.68deg 360deg
+            );
+            margin-bottom: 30px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .pie-chart::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            background: var(--white);
+            border-radius: 50%;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .tokenomics-legend {
+            list-style: none;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .tokenomics-legend li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            font-weight: 500;
+            justify-content: flex-start;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            margin-right: 15px;
+        }
+
+        /* Meme Food Menu */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .menu-item {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--secondary-green), var(--highlight-purple));
+            opacity: 0.1;
+            transition: all 0.3s ease;
+        }
+
+        .menu-item:hover::before {
+            left: 0;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .menu-item:hover .food-icon {
+            animation: wiggle 0.5s ease;
+        }
+
+        .food-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .menu-item h3 {
+            color: var(--primary-blue);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-item p {
+            color: var(--cool-gray);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--secondary-green);
+            background: linear-gradient(135deg, var(--secondary-green), var(--highlight-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .token-info {
+            font-size: 0.9rem;
+            color: var(--cool-gray);
+            background: var(--soft-bg);
+            padding: 8px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+
+        [data-theme="dark"] .token-info {
+            background: #334155;
+        }
+
+        /* Roadmap Timeline */
+        .roadmap-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .roadmap-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(var(--primary-blue), var(--secondary-green));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 40px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: auto;
+            margin-left: 60px;
+            text-align: left;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: auto;
+            margin-right: 60px;
+            text-align: right;
+        }
+
+        .timeline-content {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            max-width: 300px;
+            position: relative;
+        }
+
+        .timeline-icon {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(var(--primary-blue), var(--secondary-green));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .phase-title {
+            color: var(--primary-blue);
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--charcoal);
+            color: var(--white);
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        .social-icons {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .social-icons a {
+            color: var(--secondary-green);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            padding: 8px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-icons a svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .social-icons a:hover {
+            color: var(--white);
+            background: var(--secondary-green);
+            transform: translateY(-2px);
+        }
+
+        /* Navigation */
+        .nav-bar {
+            background: var(--white);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        [data-theme="dark"] .nav-bar {
+            background: rgba(30, 41, 59, 0.95);
+            border-bottom: 1px solid #334155;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+            position: relative;
+        }
+
+        .nav-logo {
+            flex: 0 0 auto;
+            margin-right: 3rem;
+        }
+
+        .nav-logo .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .nav-center {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            flex: 0 0 auto;
+        }
+
+        .nav-links a {
+            color: var(--cool-gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--primary-blue), var(--highlight-purple));
+            color: var(--white);
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+            margin-left: 1rem;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary-blue);
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        [data-theme="dark"] .hamburger span {
+            background: var(--secondary-green);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-radius: 0 0 15px 15px;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        [data-theme="dark"] .mobile-menu {
+            background: #1E293B;
+            border: 1px solid #334155;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu a {
+            display: block;
+            color: var(--cool-gray);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 12px 0;
+            border-bottom: 1px solid #E5E7EB;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .mobile-menu a {
+            border-bottom: 1px solid #334155;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--primary-blue);
+            padding-left: 10px;
+        }
+
+        .mobile-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-menu .nav-cta {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 24px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-center,
+            .nav-right {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-content {
+                justify-content: space-between;
+            }
+
+            .nav-logo {
+                margin-right: 0;
+            }
+        }
+
+        /* Adjust body padding for fixed nav */
+        body {
+            padding-top: 70px;
+        }
+
+        /* Dark Mode Styles */
+        [data-theme="dark"] {
+            --light-bg: #0F172A;
+            --soft-bg: #1E293B;
+            --white: #1E293B;
+            --charcoal: #F1F5F9;
+            --cool-gray: #CBD5E1;
+        }
+
+        [data-theme="dark"] .header {
+            background: linear-gradient(135deg, #1E293B 0%, #7C3AED 100%);
+        }
+
+        [data-theme="dark"] .partner-card,
+        [data-theme="dark"] .menu-item,
+        [data-theme="dark"] .timeline-content {
+            background: #1E293B;
+            border: 1px solid #334155;
+        }
+
+        [data-theme="dark"] .pie-chart::after {
+            background: #1E293B;
+        }
+
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            margin-left: 1rem;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(37, 99, 235, 0.1);
+            transform: scale(1.1);
+        }
+
+        [data-theme="dark"] .theme-toggle:hover {
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        /* About Section */
+        .about-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .about-main {
+            background: linear-gradient(135deg, var(--soft-bg), var(--white));
+            border-radius: 30px;
+            padding: 4rem;
+            text-align: center;
+        }
+
+        [data-theme="dark"] .about-main {
+            background: linear-gradient(135deg, #1E293B, #334155);
+        }
+
+        .about-text {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: var(--charcoal);
+            margin-bottom: 3rem;
+            font-weight: 500;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-item {
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-item h3 {
+            color: var(--primary-blue);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-item p {
+            color: var(--cool-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2rem; }
+            .header p { font-size: 1.1rem; }
+            .section-title { font-size: 2rem; }
+            .tokenomics-content { 
+                grid-template-columns: 1fr; 
+                gap: 30px;
+                text-align: center;
+            }
+            .pie-chart { 
+                width: 250px; 
+                height: 250px; 
+            }
+            .chart-container {
+                order: -1;
+            }
+            .floating-emoji { font-size: 1.5rem; }
+            
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-left: 60px;
+                margin-right: 20px;
+                text-align: left;
+            }
+
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                padding: 8px 16px;
+                font-size: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-content {
+                height: 60px;
+            }
+
+            body {
+                padding-top: 60px;
+            }
+
+            .theme-toggle {
+                top: 75px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-main {
+                padding: 2rem;
+            }
+
+            .about-text {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body data-theme="light">
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="nav-logo">
+                    <span class="logo-text">🍔 RDG</span>
+                </div>
+                <div class="nav-center">
+                    <div class="nav-links">
+                        <a href="#tokenomics">Tokenomics</a>
+                        <a href="#menu">Menu</a>
+                        <a href="#restaurants">Restaurants</a>
+                        <a href="#roadmap">Roadmap</a>
+                        <a href="#about">About</a>
+                    </div>
+                </div>
+                <div class="nav-right">
+                    <a href="#" class="nav-cta">Buy RDG</a>
+                    <!-- Dark Mode Toggle -->
+                    <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+                </div>
+                <!-- Hamburger Menu for Mobile -->
+                <div class="hamburger" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="#tokenomics">Tokenomics</a>
+                <a href="#menu">Menu</a>
+                <a href="#restaurants">Restaurants</a>
+                <a href="#roadmap">Roadmap</a>
+                <a href="#about">About</a>
+                <a href="#" class="nav-cta">Buy RDG</a>
+                <button class="theme-toggle" onclick="toggleTheme()" style="margin-top: 15px; background: transparent; border: 2px solid var(--primary-blue); border-radius: 25px; padding: 8px 16px; font-size: 1rem;">🌙</button>
+            </div>
+        </div>
+        
+       
+    </nav>
+
+
+    <!-- Header -->
+    <header class="header">
+        <div class="floating-emoji emoji-1">🍔</div>
+        <div class="floating-emoji emoji-2">🍕</div>
+        <div class="floating-emoji emoji-3">🍣</div>
+        <div class="floating-emoji emoji-4">🚀</div>
+        <div class="floating-emoji emoji-5">💎</div>
+        <div class="floating-emoji emoji-6">🍟</div>
+        
+        <div class="container">
+            <h1>CridgeNetwork</h1>
+            <h2 class="font-fredoka text-2xl md:text-3xl mb-6 bounce-animation">
+                Welcome to CridgeNetwork Where Crypto Enthusiasts Dine, Trade & Meme Together
+            </h2>
+            <p class="text-xl md:text-2xl mb-8 opacity-90">
+                Four delicious menus, one deflationary token. Burn, earn, and have fun! 🔥
+            </p>
+            <a href="#" class="btn">Join the Colony - Be Part of the Meme Food Revolution</a>
+        </div>
+        <div>
+            <a href="#" class="btn" style="background: var(--white); color: var(--primary-blue); margin-right: 15px;">Buy $RDG Token</a>
+            <a href="#" class="btn" style="background: transparent; border: 2px solid var(--white);">Download Whitepaper</a>
+        </div>
+    </header>
+
+    <!-- Partner Restaurants -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Partner Restaurants</h2>
+            <div class="partners-grid">
+                <div class="partner-card">
+                    <span class="partner-icon">🍔</span>
+                    <h3>McMeme's</h3>
+                    <p>Crypto Burgers</p>
+                </div>
+                <div class="partner-card">
+                    <span class="partner-icon">🍕</span>
+                    <h3>Pizza DAO</h3>
+                    <p>Decentralized Pizza</p>
+                </div>
+                <div class="partner-card">
+                    <span class="partner-icon">🍟</span>
+                    <h3>BurgerCoin</h3>
+                    <p>Meme Fries</p>
+                </div>
+                <div class="partner-card">
+                    <span class="partner-icon">🍣</span>
+                    <h3>Sushi Swap</h3>
+                    <p>DeFi Sushi</p>
+                </div>
+                <div class="partner-card">
+                    <span class="partner-icon">🥤</span>
+                    <h3>DrinkDex</h3>
+                    <p>Liquid Assets</p>
+                </div>
+            </div>
+            
+            <div class="upcoming-section">
+                <h3 class="upcoming-title">🔜 Upcoming Collaborations</h3>
+                <p class="upcoming-subtitle">Local and international eateries joining RDG Network</p>
+                
+                <div class="upcoming-grid">
+                    <div class="upcoming-card">
+                        <div class="upcoming-icon">🏪</div>
+                        <h4>Coming Soon</h4>
+                        <p>Local Restaurant Partner</p>
+                    </div>
+                    <div class="upcoming-card">
+                        <div class="upcoming-icon">🏪</div>
+                        <h4>Coming Soon</h4>
+                        <p>International Chain</p>
+                    </div>
+                    <div class="upcoming-card">
+                        <div class="upcoming-icon">🏪</div>
+                        <h4>Coming Soon</h4>
+                        <p>Food Truck Network</p>
+                    </div>
+                    <div class="upcoming-card">
+                        <div class="upcoming-icon">🏪</div>
+                        <h4>Coming Soon</h4>
+                        <p>Cafe Chain</p>
+                    </div>
+                    <div class="upcoming-card">
+                        <div class="upcoming-icon">🏪</div>
+                        <h4>Coming Soon</h4>
+                        <p>Fine Dining</p>
+                    </div>
+                    <div class="upcoming-card">
+                        <div class="upcoming-icon">🏪</div>
+                        <h4>Coming Soon</h4>
+                        <p>Dessert Shop</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tokenomics -->
+    <section class="section tokenomics">
+        <div class="container">
+            <h2 class="section-title">Tokenomics</h2>
+            <div class="tokenomics-content">
+                <div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 2rem; color: var(--primary-blue);">Token Details</h3>
+                    <p><strong>Total Supply:</strong> 6,000,000,000 RDG</p>
+                    <p><strong>Token Name:</strong> RDG</p>
+                    <p><strong>Network:</strong> Ethereum</p>
+                    <p><strong>Contract Address:</strong> 0x1234...5678</p>
+                    
+                    <div style="margin-top: 2rem; padding: 20px; background: linear-gradient(135deg, var(--primary-blue), var(--highlight-purple)); border-radius: 15px; color: white;">
+                        <h4 style="margin-bottom: 1rem;">🔥 Deflationary Mechanism</h4>
+                        <p style="font-size: 0.9rem; opacity: 0.9;">Every menu token creation burns 15% of RDG permanently. Trading fees from menu tokens fuel continuous RDG buybacks and burns.</p>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <div class="pie-chart"></div>
+                    <ul class="tokenomics-legend">
+                        <li>
+                            <div class="legend-color" style="background-color: #F59E0B;"></div>
+                            Liquidity (25%)
+                        </li>
+                        <li>
+                            <div class="legend-color" style="background-color: #000000;"></div>
+                            Taco Supreme Burn (15%)
+                        </li>
+                        <li>
+                            <div class="legend-color" style="background-color: #FF69B4;"></div>
+                            Golden Pizza Burn (15%)
+                        </li>
+                        <li>
+                            <div class="legend-color" style="background-color: #FF6B35;"></div>
+                            Diamond Burger Burn (15%)
+                        </li>
+                        <li>
+                            <div class="legend-color" style="background-color: #F59E0B;"></div>
+                            Hodl Fries Burn (15%)
+                        </li>
+                        <li>
+                            <div class="legend-color" style="background-color: #87CEEB;"></div>
+                            Treasury (5%)
+                        </li>
+                        <li>
+                            <div class="legend-color" style="background-color: #32CD32;"></div>
+                            Private Sale (3%)
+                        </li>
+                        <li>
+                            <div class="legend-color" style="background-color: #FFD700;"></div>
+                            Community Incentive (2%)
+                        </li>
+                        <li>
+                            <div class="legend-color" style="background-color: #4169E1;"></div>
+                            Team (5%)
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meme Food Menu -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Meme Food Menu</h2>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <span class="food-icon">🍔</span>
+                    <h3>Diamond Hands Burger</h3>
+                    <p>Hold tight, taste even better</p>
+                    <div class="token-info">🪙 DBT • Supply: 10M</div>
+                </div>
+                <div class="menu-item">
+                    <span class="food-icon">🍕</span>
+                    <h3>Golden Pizza</h3>
+                    <p>Topped with viral flavors and blockchain cheese</p>
+                    <div class="token-info">🪙 GPT • Supply: 6M</div>
+                </div>
+                <div class="menu-item">
+                    <span class="food-icon">🍟</span>
+                    <h3>HODL Fries</h3>
+                    <p>Crispy and ready for take-off</p>
+                    <div class="token-info">🪙 HFT • Supply: 8M</div>
+                </div>
+                <div class="menu-item">
+                    <span class="food-icon">🌮</span>
+                    <h3>Taco Supreme</h3>
+                    <p>Every day is taco Tuesday in the metaverse</p>
+                    <div class="token-info">🪙 TST • Supply: 15M</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap -->
+    <section class="section tokenomics">
+        <div class="container">
+            <h2 class="section-title">Roadmap</h2>
+            <div class="roadmap-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon">🚀</div>
+                    <div class="timeline-content">
+                        <div class="phase-title">Q1 2024 - Foundation</div>
+                        <p>Launch RDG & Initial Ecosystem</p>
+                        <p>• RDG Token Launch & Website<br>
+                        • Initial Liquidity Pool Creation<br>
+                        • Community Discord & Telegram Launch</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">🍔</div>
+                    <div class="timeline-content">
+                        <div class="phase-title">Q2 2024 - Diamond Burger</div>
+                        <p>First Menu Token & Burn Cycle</p>
+                        <p>• Release Diamond Burger Token (DBT)<br>
+                        • Start 15% RDG Burn Mechanism<br>
+                        • Restaurant Partnership Program</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">🍕</div>
+                    <div class="timeline-content">
+                        <div class="phase-title">Q3 2024 - Golden Pizza</div>
+                        <p>Expansion & Partnerships</p>
+                        <p>• Release Golden Pizza Token (GPT)<br>
+                        • Onboard Restaurant Partnerships<br>
+                        • Mobile App Development</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">🌮</div>
+                    <div class="timeline-content">
+                        <div class="phase-title">Q4 2024 - Taco Supreme</div>
+                        <p>Governance & Community</p>
+                        <p>• Release Taco Supreme Token (TST)<br>
+                        • DAO Governance Activation<br>
+                        • Community Voting System</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">🍟</div>
+                    <div class="timeline-content">
+                        <div class="phase-title">Q1 2025 - HODL Fries</div>
+                        <p>Global Expansion</p>
+                        <p>• Release HODL Fries Token (HFT)<br>
+                        • Staking & Yield Farming<br>
+                        • Merchandise & Global Restaurants</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ecosystem Features -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">🏆 Ecosystem Highlights</h2>
+            <div class="partners-grid">
+                <div class="partner-card">
+                    <span class="partner-icon">🔥</span>
+                    <h3>Deflationary by Design</h3>
+                    <p>Multiple burns reduce RDG supply over time</p>
+                </div>
+                <div class="partner-card">
+                    <span class="partner-icon">🍽️</span>
+                    <h3>Multi-Token Menu Model</h3>
+                    <p>Each menu token adds utility and engagement</p>
+                </div>
+                <div class="partner-card">
+                    <span class="partner-icon">👥</span>
+                    <h3>Community-First Approach</h3>
+                    <p>Menu tokens have no team allocation</p>
+                </div>
+                <div class="partner-card">
+                    <span class="partner-icon">💰</span>
+                    <h3>Revenue-Backed Burns</h3>
+                    <p>Trading fees fuel buyback and burn cycles</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About RDG</h2>
+            <div class="about-content">
+                <div class="about-main">
+                    <p class="about-text">
+                        "RDG is a meme food crypto project connecting crypto enthusiasts with global and local eateries. Every trade, every bite, and every meme supports a deflationary token economy designed for the community."
+                    </p>
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">🔥</div>
+                            <h3>Deflationary</h3>
+                            <p>Continuous token burns increase scarcity</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">🤝</div>
+                            <h3>Community</h3>
+                            <p>Built by and for crypto food enthusiasts</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">🌍</div>
+                            <h3>Global</h3>
+                            <p>Connecting restaurants worldwide</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section" style="background: linear-gradient(135deg, var(--primary-blue) 0%, var(--highlight-purple) 100%); color: var(--white); text-align: center;">
+        <div class="container">
+            <h2 style="color: var(--white); margin-bottom: 1rem;">Ready to Join the Revolution?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9;">Be part of the future where memes meet meals and crypto feeds your appetite</p>
+            <a href="#" class="btn" style="background: var(--white); color: var(--primary-blue); margin-right: 15px;">Buy $RDG Token</a>
+            <a href="#" class="btn" style="background: transparent; border: 2px solid var(--white);">Download Whitepaper</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <h3>RDG Token</h3>
+            <div class="social-icons">
+                <a href="https://x.com/CridgeAI_global" title="Twitter">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+                <a href="https://t.me/Cridgenetwork_Channel" title="Telegram">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                    </svg>
+                </a>
+                <a href="#" title="Discord">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0190 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1568 2.4189Z"/>
+                    </svg>
+                </a>
+            </div>
+            <p>&copy; 2025 RDG Token. All rights reserved. | Where Memes Meet Meals</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const themeToggle = document.querySelector('.theme-toggle');
+            
+            if (body.getAttribute('data-theme') === 'light') {
+                body.setAttribute('data-theme', 'dark');
+                themeToggle.innerHTML = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.setAttribute('data-theme', 'light');
+                themeToggle.innerHTML = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const hamburger = document.querySelector('.hamburger');
+            
+            mobileMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking on a link
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            const body = document.body;
+            const themeToggle = document.querySelector('.theme-toggle');
+            
+            body.setAttribute('data-theme', savedTheme);
+            
+            if (savedTheme === 'dark') {
+                themeToggle.innerHTML = '☀️';
+            } else {
+                themeToggle.innerHTML = '🌙';
+            }
+
+            // Close mobile menu when clicking on links
+            const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    const mobileMenu = document.getElementById('mobileMenu');
+                    const hamburger = document.querySelector('.hamburger');
+                    mobileMenu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                });
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                const mobileMenu = document.getElementById('mobileMenu');
+                const hamburger = document.querySelector('.hamburger');
+                const navBar = document.querySelector('.nav-bar');
+                
+                if (!navBar.contains(event.target) && mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

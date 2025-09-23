@@ -234,6 +234,27 @@
             margin-bottom: 1rem;
         }
 
+        .bouncing-arrow {
+            display: inline-block;
+            animation: bounceToText 2s ease-in-out infinite;
+            margin-right: 0.5rem;
+        }
+
+        @keyframes bounceToText {
+            0%, 100% {
+                transform: translateX(0) scale(1);
+            }
+            25% {
+                transform: translateX(10px) scale(1.1);
+            }
+            50% {
+                transform: translateX(15px) scale(1.2);
+            }
+            75% {
+                transform: translateX(5px) scale(1.05);
+            }
+        }
+
         .upcoming-subtitle {
             font-size: 1.1rem;
             color: var(--cool-gray);

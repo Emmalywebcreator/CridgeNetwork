@@ -4,6 +4,10 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         :root {
             --primary-blue: #2563EB;
             --secondary-green: #10B981;
@@ -783,6 +787,7 @@
 
             .nav-content {
                 justify-content: space-between;
+                height: 60px;
             }
 
             .nav-logo {
@@ -794,6 +799,10 @@
                 width: 50px;
                 border-radius: 50%;
                 object-fit: cover;
+            }
+
+            body {
+                padding-top: 60px;
             }
         }
 
@@ -915,7 +924,7 @@
             font-size: 0.9rem;
         }
 
-        /* Responsive */
+        /* Additional Responsive Styles for Content */
         @media (max-width: 768px) {
             .header h1 { font-size: 2rem; }
             .header p { font-size: 1.1rem; }
@@ -939,29 +948,6 @@
                 margin-left: 60px;
                 margin-right: 20px;
                 text-align: left;
-            }
-
-            .theme-toggle {
-                top: 10px;
-                right: 10px;
-                padding: 8px 16px;
-                font-size: 1rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .nav-content {
-                height: 60px;
-            }
-
-            body {
-                padding-top: 60px;
-            }
-
-            .theme-toggle {
-                top: 75px;
             }
 
             .cta-buttons {

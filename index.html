@@ -18,8 +18,8 @@
                 <div class="nav-center">
                     <div class="nav-links">
                         <a href="#home">Home</a>
-                        <a href="#tokenomics">Tokenomics</a>
                         <a href="#menu">Menu</a>
+                        <a href="#tokenomics">Tokenomics</a>
                         <a href="#restaurants">Restaurants</a>
                         <a href="#roadmap">Roadmap</a>
                         <a href="#about">About</a>
@@ -386,67 +386,6 @@
         </div>
     </footer>
 
-    <script>
-        function toggleTheme() {
-            const body = document.body;
-            const themeToggle = document.querySelector('.theme-toggle');
-            
-            if (body.getAttribute('data-theme') === 'light') {
-                body.setAttribute('data-theme', 'dark');
-                themeToggle.innerHTML = '☀️';
-                localStorage.setItem('theme', 'dark');
-            } else {
-                body.setAttribute('data-theme', 'light');
-                themeToggle.innerHTML = '🌙';
-                localStorage.setItem('theme', 'light');
-            }
-        }
-
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            const hamburger = document.querySelector('.hamburger');
-            
-            mobileMenu.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        }
-
-        // Close mobile menu when clicking on a link
-        document.addEventListener('DOMContentLoaded', function() {
-            const savedTheme = localStorage.getItem('theme') || 'dark';
-            const body = document.body;
-            const themeToggle = document.querySelector('.theme-toggle');
-            
-            body.setAttribute('data-theme', savedTheme);
-            
-            if (savedTheme === 'dark') {
-                themeToggle.innerHTML = '☀️';
-            } else {
-                themeToggle.innerHTML = '🌙';
-            }
-
-            // Close mobile menu when clicking on links
-            const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
-            mobileMenuLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    const mobileMenu = document.getElementById('mobileMenu');
-                    const hamburger = document.querySelector('.hamburger');
-                    mobileMenu.classList.remove('active');
-                    hamburger.classList.remove('active');
-                });
-            });
-
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', function(event) {
-                const mobileMenu = document.getElementById('mobileMenu');
-                const hamburger = document.querySelector('.hamburger');
-                const navBar = document.querySelector('.nav-bar');
-                
-                if (!navBar.contains(event.target) && mobileMenu.classList.contains('active')) {
-                    mobileMenu.classList.remove('active');
-                    hamburger.classList.remove('active');
-                }
-            });
-        });
-    </script>
+    <script src="js/scripts.js"></script>
 </body>
 </html>
